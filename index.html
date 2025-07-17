@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <title>Administrador Cursos</title>
+</head>
+
+<body>
+    <header class="bg-light bg-gradient py-3">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <svg width="37" height="41" viewBox="0 0 37 41" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        alt="Logo" class="d-inline-block align-text-center">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M5.79854 8.32545V16.0697C6.40555 15.9227 7.00165 15.7287 7.58131 15.4886C9.04883 14.8807 10.3823 13.9897 11.5054 12.8665C12.6286 11.7434 13.5196 10.4099 14.1275 8.94242C14.5074 8.02525 14.772 7.06693 14.9171 6.08938C11.8123 6.38997 8.74033 7.13533 5.79854 8.32545ZM0.106445 4.58301V16.4093V22.1014V22.2793C0.106445 32.2014 8.14995 40.2449 18.0721 40.2449C27.9943 40.2449 36.0378 32.2014 36.0378 22.2793V22.1014V16.4093V4.58301L33.407 3.43783C23.6269 -0.819365 12.5173 -0.819365 2.73726 3.43783L0.106445 4.58301ZM5.79959 22.4412C5.87284 28.1048 9.78208 32.8432 15.0482 34.1775C15.0456 32.5957 14.7328 31.0298 14.1275 29.5683C13.5196 28.1007 12.6286 26.7673 11.5054 25.6441C10.3823 24.5209 9.04883 23.63 7.58131 23.0221C7.00198 22.7822 6.40623 22.5882 5.79959 22.4412ZM17.8942 24.5457C17.2136 23.4919 16.4217 22.5105 15.5304 21.6192C14.639 20.7279 13.6577 19.936 12.6039 19.2553C13.6577 18.5747 14.639 17.7828 15.5304 16.8915C16.4217 16.0001 17.2136 15.0188 17.8942 13.965C18.5749 15.0188 19.3668 16.0001 20.2581 16.8915C21.1494 17.7828 22.1308 18.5747 23.1846 19.2553C22.1308 19.936 21.1494 20.7279 20.2581 21.6192C19.3668 22.5105 18.5749 23.4919 17.8942 24.5457ZM20.7403 34.262C26.2104 33.0494 30.3076 28.1868 30.3454 22.3606C29.6155 22.5142 28.8996 22.7353 28.2072 23.0221C26.7396 23.63 25.4062 24.5209 24.283 25.6441C23.1598 26.7673 22.2689 28.1007 21.661 29.5683C21.0531 31.0358 20.7403 32.6087 20.7403 34.1971V34.262ZM28.2072 15.4886C28.8997 15.7754 29.6157 15.9966 30.3457 16.1502V8.32546C27.2901 7.08927 24.094 6.33295 20.8665 6.05649C21.0105 7.04543 21.2768 8.01497 21.661 8.94242C22.2689 10.4099 23.1598 11.7434 24.283 12.8665C25.4062 13.9897 26.7396 14.8807 28.2072 15.4886Z"
+                            fill="#193070">
+                        </path>
+                    </svg>
+                    Simulation Academy
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="px-3 pb-3">
+        <h1>Administrador de Cursos</h1>
+        <p>En este panel puedes administrar tanto alumnos como profesores pertenecientes a un curso.</p>
+        <p>Navega entre las opciones para listar, crear o modificar alumnos o profesores.</p>
+
+        <div class="contenedor-tablas">
+
+            <!-- Listar Alumnos -->
+            <div id="seccion-alumnos" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Listar Alumnos</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                        <button class="btn btn-outline-primary btn-refresh">
+                            <img src="./icons/refresh.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th>Curso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-alumnos-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Listar Profesores -->
+            <div id="seccion-profesores" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Listar Profesores</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                        <button class="btn btn-outline-primary btn-refresh">
+                            <img src="./icons/refresh.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+                    <table class="table table-striped table-bordered mt-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th>Curso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-profesores-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Listar Cursos -->
+            <div id="seccion-cursos" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Listar Cursos</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                        <button class="btn btn-outline-primary btn-refresh">
+                            <img src="./icons/refresh.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+                    <table class="table table-striped table-bordered mt-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-cursos-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Crear Perfil -->
+            <div id="seccion-crear-perfil" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Crear Perfil</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+
+                    <form class="mt-3" id="c-form">
+                        <div class="form-group row mb-3">
+                            <label for="c-nombre" class="col-2 col-form-label">Nombre</label>
+                            <div class="col-10">
+                                <input type="text" id="c-nombre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="c-edad" class="col-2 col-form-label">Edad</label>
+                            <div class="col-10">
+                                <input type="number" id="c-edad" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="c-curso" class="col-2 col-form-label">Curso</label>
+                            <div class="col-10">
+                                <select name="c-curso" id="c-curso" class="form-control">
+                                    <option value="" selected disabled>Opcional</option>
+                                    <option value="Lenguaje">Lenguaje</option>
+                                    <option value="Historia">Historia</option>
+                                    <option value="Matemáticas">Matemáticas</option>
+                                    <option value="Ciencias">Ciencias</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3 align-items-center">
+                            <label for="c-rol" class="col-2 col-form-label">Rol</label>
+                            <div class="form-check col-5">
+                                <input type="radio" id="c-alumno" name="rol" value="c-alumno" class="form-check-input">
+                                <label for="c-alumno">Alumno</label>
+                            </div>
+                            <div class="form-check col-5">
+                                <input type="radio" id="c-profesor" name="rol" value="c-profesor"
+                                    class="form-check-input">
+                                <label for="c-profesor">Profesor</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-2 col-12">Crear</button>
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- Modificar Perfil -->
+            <div id="seccion-modificar-perfil" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Modificar Perfil</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+
+                    <form class="mt-3" id="m-form">
+
+                        <div class="form-group mb-3 row align-items-center">
+                            <label for="m-id" class="col-1">ID</label>
+                            <div class="col-3">
+                                <input type="number" id="m-id" class="form-control">
+                            </div>
+                            <div class="form-check col-4">
+                                <input type="radio" id="m-alumno" name="m-rol" value="m-alumno"
+                                    class="form-check-input">
+                                <label for="m-alumno">Alumno</label>
+                            </div>
+                            <div class="form-check col-4">
+                                <input type="radio" id="m-profesor" name="m-rol" value="m-profesor"
+                                    class="form-check-input">
+                                <label for="m-profesor">Profesor</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="m-nombre" class="col-2 col-form-label">Nombre</label>
+                            <div class="col-10">
+                                <input type="text" id="m-nombre" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="m-edad" class="col-2 col-form-label">Edad</label>
+                            <div class="col-10">
+                                <input type="number" id="m-edad" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row mb-3">
+                            <label for="m-curso" class="col-2 col-form-label">Curso</label>
+                            <div class="col-10">
+                                <select name="m-curso" id="m-curso" class="form-control">
+                                    <option value="" selected disabled>Opcional</option>
+                                    <option value="Lenguaje">Lenguaje</option>
+                                    <option value="Historia">Historia</option>
+                                    <option value="Matemáticas">Matemáticas</option>
+                                    <option value="Ciencias">Ciencias</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary mt-2 col-12">Modificar</button>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <!-- Buscar por ID -->
+            <div id="seccion-buscar-id" class="mb-4 border-top pt-2">
+                <div class="titulo-2 d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-start col-6">
+                        <h2>Buscar por ID</h2>
+                    </div>
+                    <div class="d-flex justify-content-end col-6">
+                        <button class="btn btn-outline-primary btn-desplegar">
+                            <img src="./icons/triangle-down.svg" alt="Desplegar" width="20">
+                        </button>
+                    </div>
+                </div>
+                <div class="desplegable oculto">
+
+                    <form class="justify-content-around align-items-center d-flex" id="b-form">
+
+                        <label for="b-id" class="col-1">ID</label>
+                        <div class="col-2">
+                            <input type="number" id="b-id" class="form-control">
+                        </div>
+                        <div class="form-check col-3">
+                            <input type="radio" id="b-alumno" name="b-rol" value="b-alumno" class="form-check-input">
+                            <label for="b-alumno">Alumno</label>
+                        </div>
+                        <div class="form-check col-3">
+                            <input type="radio" id="b-profesor" name="b-rol" value="b-profesor"
+                                class="form-check-input">
+                            <label for="b-profesor">Profesor</label>
+                        </div>
+                        <button class="btn btn-primary mt-2 col-2">Buscar</button>
+
+                    </form>
+
+                    <table class="table table-striped table-bordered mt-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Edad</th>
+                                <th>Curso</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-buscar-id-body"></tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="d-flex justify-content-center align-items-center bg-light bg-gradient py-4">
+        <svg width="37" height="41" viewBox="0 0 37 41" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Logo"
+            class="mx-4">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.79854 8.32545V16.0697C6.40555 15.9227 7.00165 15.7287 7.58131 15.4886C9.04883 14.8807 10.3823 13.9897 11.5054 12.8665C12.6286 11.7434 13.5196 10.4099 14.1275 8.94242C14.5074 8.02525 14.772 7.06693 14.9171 6.08938C11.8123 6.38997 8.74033 7.13533 5.79854 8.32545ZM0.106445 4.58301V16.4093V22.1014V22.2793C0.106445 32.2014 8.14995 40.2449 18.0721 40.2449C27.9943 40.2449 36.0378 32.2014 36.0378 22.2793V22.1014V16.4093V4.58301L33.407 3.43783C23.6269 -0.819365 12.5173 -0.819365 2.73726 3.43783L0.106445 4.58301ZM5.79959 22.4412C5.87284 28.1048 9.78208 32.8432 15.0482 34.1775C15.0456 32.5957 14.7328 31.0298 14.1275 29.5683C13.5196 28.1007 12.6286 26.7673 11.5054 25.6441C10.3823 24.5209 9.04883 23.63 7.58131 23.0221C7.00198 22.7822 6.40623 22.5882 5.79959 22.4412ZM17.8942 24.5457C17.2136 23.4919 16.4217 22.5105 15.5304 21.6192C14.639 20.7279 13.6577 19.936 12.6039 19.2553C13.6577 18.5747 14.639 17.7828 15.5304 16.8915C16.4217 16.0001 17.2136 15.0188 17.8942 13.965C18.5749 15.0188 19.3668 16.0001 20.2581 16.8915C21.1494 17.7828 22.1308 18.5747 23.1846 19.2553C22.1308 19.936 21.1494 20.7279 20.2581 21.6192C19.3668 22.5105 18.5749 23.4919 17.8942 24.5457ZM20.7403 34.262C26.2104 33.0494 30.3076 28.1868 30.3454 22.3606C29.6155 22.5142 28.8996 22.7353 28.2072 23.0221C26.7396 23.63 25.4062 24.5209 24.283 25.6441C23.1598 26.7673 22.2689 28.1007 21.661 29.5683C21.0531 31.0358 20.7403 32.6087 20.7403 34.1971V34.262ZM28.2072 15.4886C28.8997 15.7754 29.6157 15.9966 30.3457 16.1502V8.32546C27.2901 7.08927 24.094 6.33295 20.8665 6.05649C21.0105 7.04543 21.2768 8.01497 21.661 8.94242C22.2689 10.4099 23.1598 11.7434 24.283 12.8665C25.4062 13.9897 26.7396 14.8807 28.2072 15.4886Z"
+                fill="#193070">
+            </path>
+        </svg>
+        <p class="mb-0">&copy; 2025 Simulation Academy. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- toast notification -->
+    <!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body" id="toast-body">
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

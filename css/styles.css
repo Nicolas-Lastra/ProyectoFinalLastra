@@ -1,0 +1,9 @@
+/* Desplegable */
+
+.oculto {
+    display: none;
+}
+
+.btn-refresh {
+    margin-left: 10px;
+}
