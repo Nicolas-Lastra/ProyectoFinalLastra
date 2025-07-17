@@ -1,4 +1,4 @@
-# entregable-2-JavaScript
+# entregable-final-JavaScript
 
 Simulador interactivo para gestionar personas con roles en cursos. Entrega para el curso de JavaScript dictado por CoderHouse.
 
